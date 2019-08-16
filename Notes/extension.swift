@@ -18,14 +18,14 @@ extension UIView {
         border.backgroundColor = color
         
         switch side {
-        case .left:
-            border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
-        case .right:
-            border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height)
-        case .bottom:
-            border.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: thickness)
-        case .top:
-            border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
+            case .left:
+                border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
+            case .right:
+                border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height)
+            case .bottom:
+                border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness)
+            case .top:
+                border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
         }
         
         layer.addSublayer(border)

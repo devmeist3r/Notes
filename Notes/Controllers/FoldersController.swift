@@ -42,6 +42,13 @@ class FoldersController: UITableViewController {
         ]
         
         self.toolbarItems = items
+        
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
+        self.navigationItem.setRightBarButton(editButton, animated: false)
+        self.navigationController?.toolbar.tintColor = .cyan
+        self.navigationController?.navigationBar.tintColor = .cyan
+        
+        setupTranslucentViewa()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -52,12 +59,36 @@ class FoldersController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_ID)
         tableView.tableHeaderView = headerView
     }
+    
+    fileprivate func getImage(withColor color:UIColor, andSize size: CGSize) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        return image
+    }
+    
+    fileprivate func setupTranslucentViewa() {
+        let toolBar = self.navigationController?.toolbar
+        let navigationBar = self.navigationController?.navigationBar
+        
+        let slighWhite = getImage(withColor: UIColor.white.withAlphaComponent(0.9), andSize: CGSize(width: 30, height: 30))
+        
+        toolBar?.setBackgroundImage(slighWhite, forToolbarPosition: .any, barMetrics: .default)
+        toolBar?.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
+        navigationBar?.setBackgroundImage(slighWhite, for: .default)
+        navigationBar?.shadowImage = slighWhite
+    }
 }
 
 extension FoldersController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 20
     }
     
     override func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
