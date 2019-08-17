@@ -26,37 +26,32 @@ class FoldersController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
         navigationItem.title = "Folders"
-        
         setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        self.navigationController?.setToolbarHidden(false, animated: false)
         
         let items:[UIBarButtonItem] = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "New folder", style: .done, target: self, action: nil)
+            UIBarButtonItem(title: "New Folder", style: .done, target: nil, action: nil)
         ]
         
         self.toolbarItems = items
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
         self.navigationItem.setRightBarButton(editButton, animated: false)
-        self.navigationController?.toolbar.tintColor = .cyan
-        self.navigationController?.navigationBar.tintColor = .cyan
+        self.navigationController?.toolbar.tintColor = .primaryColor
+        self.navigationController?.navigationBar.tintColor = .primaryColor
         
         setupTranslucentViewa()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.setToolbarHidden(true, animated: false)
-    }
-    
+        
     fileprivate func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_ID)
+        tableView.register(FolderCell.self, forCellReuseIdentifier: CELL_ID)
         tableView.tableHeaderView = headerView
     }
     
@@ -92,13 +87,17 @@ extension FoldersController {
     }
     
     override func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath)
-        cell.textLabel?.text = "here's a note folder"
+        let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! FolderCell
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let foldersNotesController = FolderNotesController()
-        navigationController?.pushViewController(FolderNotesController(), animated: true)
+        navigationController?.pushViewController(foldersNotesController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
