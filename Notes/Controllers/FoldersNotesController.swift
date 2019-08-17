@@ -41,7 +41,7 @@ class FolderNotesController: UITableViewController {
     }
     
     fileprivate func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_ID)
+        tableView.register(FolderNotesCell.self, forCellReuseIdentifier: CELL_ID)
     }
 }
 
@@ -51,8 +51,8 @@ extension FolderNotesController {
     }
     
     override func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath)
-        cell.textLabel?.text = "here's a note folder"
+        let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! FolderNotesCell
+        
         return cell
     }
     
@@ -61,8 +61,8 @@ extension FolderNotesController {
         navigationController?.pushViewController(noteDetailController, animated: false)
     }
 
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
 

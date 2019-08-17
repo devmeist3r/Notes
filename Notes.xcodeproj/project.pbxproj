@@ -13,6 +13,9 @@
 		E802E8132304FE9C003210A3 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802E8122304FE9C003210A3 /* FoldersController.swift */; };
 		E812B85A230859E3002C6E35 /* NoteDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B859230859E3002C6E35 /* NoteDetailController.swift */; };
 		E812B85D230876DD002C6E35 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B85C230876DD002C6E35 /* FolderCell.swift */; };
+		E812B85F23088745002C6E35 /* FolderNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B85E23088745002C6E35 /* FolderNotesCell.swift */; };
+		E812B86223089478002C6E35 /* NoteFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B86123089478002C6E35 /* NoteFolder.swift */; };
+		E812B86423089487002C6E35 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B86323089487002C6E35 /* Note.swift */; };
 		E8670592230641F000AE1C94 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8670591230641F000AE1C94 /* extension.swift */; };
 		E8AF822B23050505004DE318 /* FoldersNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AF822A23050505004DE318 /* FoldersNotesController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +29,9 @@
 		E802E8122304FE9C003210A3 /* FoldersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
 		E812B859230859E3002C6E35 /* NoteDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailController.swift; sourceTree = "<group>"; };
 		E812B85C230876DD002C6E35 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
+		E812B85E23088745002C6E35 /* FolderNotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderNotesCell.swift; sourceTree = "<group>"; };
+		E812B86123089478002C6E35 /* NoteFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFolder.swift; sourceTree = "<group>"; };
+		E812B86323089487002C6E35 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		E8670591230641F000AE1C94 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		E8AF822A23050505004DE318 /* FoldersNotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersNotesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +66,7 @@
 		E802E7FF2304FC6A003210A3 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				E812B86023089459002C6E35 /* Models */,
 				E812B85B230876CB002C6E35 /* Cells */,
 				E8AF8229230504E2004DE318 /* Controllers */,
 				E802E8002304FC6A003210A3 /* AppDelegate.swift */,
@@ -75,8 +82,18 @@
 			isa = PBXGroup;
 			children = (
 				E812B85C230876DD002C6E35 /* FolderCell.swift */,
+				E812B85E23088745002C6E35 /* FolderNotesCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E812B86023089459002C6E35 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E812B86123089478002C6E35 /* NoteFolder.swift */,
+				E812B86323089487002C6E35 /* Note.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E8AF8229230504E2004DE318 /* Controllers */ = {
@@ -160,9 +177,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8AF822B23050505004DE318 /* FoldersNotesController.swift in Sources */,
+				E812B85F23088745002C6E35 /* FolderNotesCell.swift in Sources */,
 				E802E8012304FC6A003210A3 /* AppDelegate.swift in Sources */,
 				E802E8132304FE9C003210A3 /* FoldersController.swift in Sources */,
 				E8670592230641F000AE1C94 /* extension.swift in Sources */,
+				E812B86423089487002C6E35 /* Note.swift in Sources */,
+				E812B86223089478002C6E35 /* NoteFolder.swift in Sources */,
 				E812B85A230859E3002C6E35 /* NoteDetailController.swift in Sources */,
 				E812B85D230876DD002C6E35 /* FolderCell.swift in Sources */,
 			);
