@@ -8,15 +8,34 @@
 
 import UIKit
 
-
 class FolderNotesController: UITableViewController {
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var folderData: NoteFolder! {
+        didSet {
+           self.notes = folderData.notes
+            filteredNotes = notes
+        }
+    }
+    
+    fileprivate var notes = [Note]()
+    fileprivate var filteredNotes = [Note]()
     
     fileprivate let CELL_ID: String = "CELL_ID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupSearchBar()
         setupTableView()
+    }
+    
+    fileprivate func setupSearchBar() {
+        self.definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,15 +62,38 @@ class FolderNotesController: UITableViewController {
     fileprivate func setupTableView() {
         tableView.register(FolderNotesCell.self, forCellReuseIdentifier: CELL_ID)
     }
+    
+    var cachedText: String = ""
+}
+
+extension FolderNotesController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredNotes = notes.filter({ (note) -> Bool in
+            return note.title.lowercased().contains(searchText.lowercased())
+        })
+        if searchBar.text!.isEmpty && filteredNotes.isEmpty {
+            filteredNotes = notes
+        }
+        cachedText = searchText
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if !cachedText.isEmpty && !filteredNotes.isEmpty {
+            searchController.searchBar.text = cachedText
+        }
+    }
 }
 
 extension FolderNotesController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.filteredNotes.count
     }
     
     override func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! FolderNotesCell
+        let noteForRow = self.filteredNotes[indexPath.row]
+        cell.noteData = noteForRow
         
         return cell
     }

@@ -9,7 +9,17 @@
 import UIKit
 
 class FolderNotesCell: UITableViewCell {
-    // note title
+    
+    var noteData: Note! {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM dd, yyyy"
+            noteTitle.text = noteData.title
+            dateLabel.text = dateFormatter.string(from: noteData.date)
+            previewLabel.text = noteData.text
+        }
+    }
+    
     fileprivate var noteTitle: UILabel = {
         let label = UILabel()
         label.text = "Places to take photos"

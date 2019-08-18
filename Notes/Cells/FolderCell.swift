@@ -9,6 +9,15 @@
 import UIKit
 
 class FolderCell: UITableViewCell {
+    
+    var folderData: NoteFolder! {
+        didSet {
+//            guard let folderData = folderData else { return }
+            label.text = folderData.title
+            countLabel.text = String(folderData.notes.count)
+        }
+    }
+    
     fileprivate var label: UILabel = {
         let label = UILabel()
         label.text = "Folder title"

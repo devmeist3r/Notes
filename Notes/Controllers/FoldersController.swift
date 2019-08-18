@@ -8,6 +8,22 @@
 
 import UIKit
 
+let firstFoldersNotes = [
+    Note(title: "UITableViews", date: Date(), text: "Table views use protocols to recieve data."),
+    Note(title: "Collection View", date: Date(), text: "Collection views can be customized with layouts like you se in the pinterast app."),
+    Note(title: "Flow Layouts", date: Date(), text: "Custom layouts can be made with UICollectionViewFlowLayout")
+]
+
+let secondFoldersNotes = [
+    Note(title: "Instagram", date: Date(), text: "Feed de noticias"),
+    Note(title: "Facebook", date: Date(), text: "Mark Zunckeberg"),
+]
+
+var noteFolders: [NoteFolder] = [
+    NoteFolder(title: "Course notes", notes: firstFoldersNotes),
+    NoteFolder(title: "Social Media", notes: secondFoldersNotes)
+]
+
 class FoldersController: UITableViewController {
     
     fileprivate let CELL_ID: String = "CELL_ID"
@@ -83,18 +99,23 @@ class FoldersController: UITableViewController {
 extension FoldersController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return noteFolders.count
     }
     
     override func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tablewView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! FolderCell
+        let folderForRow = noteFolders[indexPath.row]
+    
+        cell.folderData = folderForRow
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let foldersNotesController = FolderNotesController()
-        navigationController?.pushViewController(foldersNotesController, animated: true)
+        let folderNotesController = FolderNotesController()
+        let folderForRowSelected = noteFolders[indexPath.row]
+        folderNotesController.folderData = folderForRowSelected
+        navigationController?.pushViewController(folderNotesController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
