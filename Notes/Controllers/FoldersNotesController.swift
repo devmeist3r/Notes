@@ -106,5 +106,22 @@ extension FolderNotesController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var actions = [UITableViewRowAction]()
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+//            print("Trying to delete item at indexPath", indexPath)
+            let targetRow = indexPath.row
+            self.notes.remove(at: targetRow)
+            self.filteredNotes.remove(at: targetRow)
+//            tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        actions.append(deleteAction)
+        
+        return actions
+    }
 }
 
