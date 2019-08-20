@@ -53,7 +53,7 @@ class FoldersController: UITableViewController {
         
         let items:[UIBarButtonItem] = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "New Folder", style: .done, target: nil, action: nil)
+            UIBarButtonItem(title: "New Folder", style: .done, target: self, action: #selector(self.handleAddNewFolder))
         ]
         
         self.toolbarItems = items
@@ -64,6 +64,33 @@ class FoldersController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .primaryColor
         
         setupTranslucentViewa()
+    }
+    
+    var textField: UITextField!
+    
+    @objc func handleAddNewFolder() {
+        let addAlert = UIAlertController(title: "New Folder", message: "Enter name for this folder.", preferredStyle: .alert)
+        
+        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            addAlert.dismiss(animated: true)
+        }))
+        
+        addAlert.addTextField { (tf) in
+            self.textField = tf
+        }
+        
+        addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            addAlert.dismiss(animated: true)
+            
+            guard let title = self.textField.text else { return }
+            
+            let newFolder = NoteFolder(title: title, notes: [])
+            noteFolders.append(newFolder)
+            
+            self.tableView.insertRows(at: [IndexPath(row: noteFolders.count - 1, section:  0)], with: .fade)
+        }))
+        
+        present(addAlert, animated: true)
     }
         
     fileprivate func setupTableView() {
