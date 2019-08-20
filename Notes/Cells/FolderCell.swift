@@ -14,7 +14,7 @@ class FolderCell: UITableViewCell {
         didSet {
 //            guard let folderData = folderData else { return }
             label.text = folderData.title
-            countLabel.text = String(folderData.notes.count)
+//            countLabel.text = String(folderData.notes.count)
         }
     }
     

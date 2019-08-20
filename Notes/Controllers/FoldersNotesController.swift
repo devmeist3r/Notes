@@ -14,7 +14,7 @@ class FolderNotesController: UITableViewController {
     
     var folderData: NoteFolder! {
         didSet {
-           self.notes = folderData.notes
+//           self.notes = folderData.notes
             filteredNotes = notes
         }
     }
@@ -69,7 +69,7 @@ class FolderNotesController: UITableViewController {
 extension FolderNotesController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredNotes = notes.filter({ (note) -> Bool in
-            return note.title.lowercased().contains(searchText.lowercased())
+            return note.title?.lowercased().contains(searchText.lowercased()) ?? false
         })
         if searchBar.text!.isEmpty && filteredNotes.isEmpty {
             filteredNotes = notes

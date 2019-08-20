@@ -8,21 +8,23 @@
 
 import UIKit
 
-let firstFoldersNotes = [
-    Note(title: "UITableViews", date: Date(), text: "Table views use protocols to recieve data."),
-    Note(title: "Collection View", date: Date(), text: "Collection views can be customized with layouts like you se in the pinterast app."),
-    Note(title: "Flow Layouts", date: Date(), text: "Custom layouts can be made with UICollectionViewFlowLayout")
-]
+//let firstFoldersNotes = [
+//    Note(title: "UITableViews", date: Date(), text: "Table views use protocols to recieve data."),
+//    Note(title: "Collection View", date: Date(), text: "Collection views can be customized with layouts like you se in the pinterast app."),
+//    Note(title: "Flow Layouts", date: Date(), text: "Custom layouts can be made with UICollectionViewFlowLayout")
+//]
+//
+//let secondFoldersNotes = [
+//    Note(title: "Instagram", date: Date(), text: "Feed de noticias"),
+//    Note(title: "Facebook", date: Date(), text: "Mark Zunckeberg"),
+//]
+//
+//var noteFolders: [NoteFolder] = [
+//    NoteFolder(title: "Course notes", notes: firstFoldersNotes),
+//    NoteFolder(title: "Social Media", notes: secondFoldersNotes)
+//]
 
-let secondFoldersNotes = [
-    Note(title: "Instagram", date: Date(), text: "Feed de noticias"),
-    Note(title: "Facebook", date: Date(), text: "Mark Zunckeberg"),
-]
-
-var noteFolders: [NoteFolder] = [
-    NoteFolder(title: "Course notes", notes: firstFoldersNotes),
-    NoteFolder(title: "Social Media", notes: secondFoldersNotes)
-]
+var noteFolders = [NoteFolder]()
 
 class FoldersController: UITableViewController {
     
@@ -43,6 +45,9 @@ class FoldersController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Folders"
+        
+        noteFolders = CoreDataManager.shared.fetchNoteFolders()
+        
         setupTableView()
     }
     
@@ -84,9 +89,9 @@ class FoldersController: UITableViewController {
             
             guard let title = self.textField.text else { return }
             
-            let newFolder = NoteFolder(title: title, notes: [])
-            noteFolders.append(newFolder)
+            let newFolder = CoreDataManager.shared.createNoteFolder(title: title)
             
+            noteFolders.append(newFolder)
             self.tableView.insertRows(at: [IndexPath(row: noteFolders.count - 1, section:  0)], with: .fade)
         }))
         

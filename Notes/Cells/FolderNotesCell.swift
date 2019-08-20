@@ -15,7 +15,7 @@ class FolderNotesCell: UITableViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM dd, yyyy"
             noteTitle.text = noteData.title
-            dateLabel.text = dateFormatter.string(from: noteData.date)
+            dateLabel.text = dateFormatter.string(from: noteData.date ?? Date())
             previewLabel.text = noteData.text
         }
     }

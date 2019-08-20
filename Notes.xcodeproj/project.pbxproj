@@ -18,6 +18,8 @@
 		E812B86423089487002C6E35 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812B86323089487002C6E35 /* Note.swift */; };
 		E8670592230641F000AE1C94 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8670591230641F000AE1C94 /* extension.swift */; };
 		E8AF822B23050505004DE318 /* FoldersNotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AF822A23050505004DE318 /* FoldersNotesController.swift */; };
+		EDF27D1D230C8CFA00C65C99 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDF27D1B230C8CFA00C65C99 /* Notes.xcdatamodeld */; };
+		EDF27D1F230C8FAE00C65C99 /* CoreDateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF27D1E230C8FAE00C65C99 /* CoreDateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		E812B86323089487002C6E35 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		E8670591230641F000AE1C94 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		E8AF822A23050505004DE318 /* FoldersNotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersNotesController.swift; sourceTree = "<group>"; };
+		EDF27D1C230C8CFA00C65C99 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		EDF27D1E230C8FAE00C65C99 /* CoreDateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,14 +70,16 @@
 		E802E7FF2304FC6A003210A3 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				E812B86023089459002C6E35 /* Models */,
+				E802E80C2304FC6B003210A3 /* Info.plist */,
+				E802E8002304FC6A003210A3 /* AppDelegate.swift */,
+				EDF27D1E230C8FAE00C65C99 /* CoreDateManager.swift */,
+				E8670591230641F000AE1C94 /* extension.swift */,
+				E802E8072304FC6B003210A3 /* Assets.xcassets */,
 				E812B85B230876CB002C6E35 /* Cells */,
 				E8AF8229230504E2004DE318 /* Controllers */,
-				E802E8002304FC6A003210A3 /* AppDelegate.swift */,
-				E802E8072304FC6B003210A3 /* Assets.xcassets */,
 				E802E8092304FC6B003210A3 /* LaunchScreen.storyboard */,
-				E802E80C2304FC6B003210A3 /* Info.plist */,
-				E8670591230641F000AE1C94 /* extension.swift */,
+				E812B86023089459002C6E35 /* Models */,
+				EDF27D1B230C8CFA00C65C99 /* Notes.xcdatamodeld */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -176,7 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF27D1F230C8FAE00C65C99 /* CoreDateManager.swift in Sources */,
 				E8AF822B23050505004DE318 /* FoldersNotesController.swift in Sources */,
+				EDF27D1D230C8CFA00C65C99 /* Notes.xcdatamodeld in Sources */,
 				E812B85F23088745002C6E35 /* FolderNotesCell.swift in Sources */,
 				E802E8012304FC6A003210A3 /* AppDelegate.swift in Sources */,
 				E802E8132304FE9C003210A3 /* FoldersController.swift in Sources */,
@@ -376,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EDF27D1B230C8CFA00C65C99 /* Notes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EDF27D1C230C8CFA00C65C99 /* Notes.xcdatamodel */,
+			);
+			currentVersion = EDF27D1C230C8CFA00C65C99 /* Notes.xcdatamodel */;
+			path = Notes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E802E7F52304FC6A003210A3 /* Project object */;
 }
