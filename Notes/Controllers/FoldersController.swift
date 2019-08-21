@@ -69,6 +69,8 @@ class FoldersController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .primaryColor
         
         setupTranslucentViewa()
+        
+        self.tableView.reloadData()
     }
     
     var textField: UITextField!
@@ -88,9 +90,7 @@ class FoldersController: UITableViewController {
             addAlert.dismiss(animated: true)
             
             guard let title = self.textField.text else { return }
-            
             let newFolder = CoreDataManager.shared.createNoteFolder(title: title)
-            
             noteFolders.append(newFolder)
             self.tableView.insertRows(at: [IndexPath(row: noteFolders.count - 1, section:  0)], with: .fade)
         }))
@@ -152,5 +152,18 @@ extension FoldersController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (rowAction, indexPath) in
+            let noteFolder = noteFolders[indexPath.row]
+            
+            if CoreDataManager.shared.deleteNoteFolder(noteFolder: noteFolder) {
+                noteFolders.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+        
+        return [deleteAction]
     }
 }

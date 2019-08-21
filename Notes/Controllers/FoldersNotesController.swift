@@ -8,13 +8,22 @@
 
 import UIKit
 
+extension FolderNotesController: NoteDelegate {
+    func saveNewNote(title: String, date: Date, text: String) {
+        let newNote = CoreDataManager.shared.createNewNote(title: title, date: date, text: text, noteFolder: self.folderData)
+        notes.append(newNote)
+        filteredNotes.append(newNote)
+        self.tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .fade)
+    }
+}
+
 class FolderNotesController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var folderData: NoteFolder! {
         didSet {
-//           self.notes = folderData.notes
+            notes = CoreDataManager.shared.fetchNotes(from: folderData)
             filteredNotes = notes
         }
     }
@@ -26,6 +35,7 @@ class FolderNotesController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupSearchBar()
         setupTableView()
     }
@@ -46,16 +56,19 @@ class FolderNotesController: UITableViewController {
         let items: [UIBarButtonItem] = [
             UIBarButtonItem(barButtonSystemItem: .organize, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Notes", style: .done, target: nil, action: nil),
+            UIBarButtonItem(title: "\(notes.count) Notes", style: .done, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNewNote))
         ]
         
         self.toolbarItems = items
+        
+        tableView.reloadData()
     }
     
     @objc fileprivate func createNewNote() {
         let noteDetailController = NoteDetailController()
+        noteDetailController.delegate = self
         navigationController?.pushViewController(noteDetailController, animated: true)
     }
     
@@ -100,7 +113,9 @@ extension FolderNotesController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let noteDetailController = NoteDetailController()
-        navigationController?.pushViewController(noteDetailController, animated: false)
+        let noteForRow = self.filteredNotes[indexPath.row]
+        noteDetailController.noteData = noteForRow
+        navigationController?.pushViewController(noteDetailController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -112,9 +127,12 @@ extension FolderNotesController {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let targetRow = indexPath.row
-            self.notes.remove(at: targetRow)
-            self.filteredNotes.remove(at: targetRow)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if CoreDataManager.shared.deleteNote(note: self.notes[targetRow]) {
+                self.notes.remove(at: targetRow)
+                self.filteredNotes.remove(at: targetRow)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
         
         actions.append(deleteAction)

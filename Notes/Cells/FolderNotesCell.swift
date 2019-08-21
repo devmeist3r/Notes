@@ -13,7 +13,7 @@ class FolderNotesCell: UITableViewCell {
     var noteData: Note! {
         didSet {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM dd, yyyy"
+            dateFormatter.dateFormat = "dd MMMM yyyy - h:mm"
             noteTitle.text = noteData.title
             dateLabel.text = dateFormatter.string(from: noteData.date ?? Date())
             previewLabel.text = noteData.text

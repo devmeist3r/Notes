@@ -70,13 +70,13 @@
 		E802E7FF2304FC6A003210A3 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				E802E80C2304FC6B003210A3 /* Info.plist */,
 				E802E8002304FC6A003210A3 /* AppDelegate.swift */,
-				EDF27D1E230C8FAE00C65C99 /* CoreDateManager.swift */,
-				E8670591230641F000AE1C94 /* extension.swift */,
 				E802E8072304FC6B003210A3 /* Assets.xcassets */,
 				E812B85B230876CB002C6E35 /* Cells */,
 				E8AF8229230504E2004DE318 /* Controllers */,
+				EDF27D1E230C8FAE00C65C99 /* CoreDateManager.swift */,
+				E8670591230641F000AE1C94 /* extension.swift */,
+				E802E80C2304FC6B003210A3 /* Info.plist */,
 				E802E8092304FC6B003210A3 /* LaunchScreen.storyboard */,
 				E812B86023089459002C6E35 /* Models */,
 				EDF27D1B230C8CFA00C65C99 /* Notes.xcdatamodeld */,
