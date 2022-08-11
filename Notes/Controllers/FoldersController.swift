@@ -1,28 +1,4 @@
-//
-//  FoldersController.swift
-//  Notes
-//
-//  Created by Lucas Inocencio on 14/08/19.
-//  Copyright © 2019 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
-
-//let firstFoldersNotes = [
-//    Note(title: "UITableViews", date: Date(), text: "Table views use protocols to recieve data."),
-//    Note(title: "Collection View", date: Date(), text: "Collection views can be customized with layouts like you se in the pinterast app."),
-//    Note(title: "Flow Layouts", date: Date(), text: "Custom layouts can be made with UICollectionViewFlowLayout")
-//]
-//
-//let secondFoldersNotes = [
-//    Note(title: "Instagram", date: Date(), text: "Feed de noticias"),
-//    Note(title: "Facebook", date: Date(), text: "Mark Zunckeberg"),
-//]
-//
-//var noteFolders: [NoteFolder] = [
-//    NoteFolder(title: "Course notes", notes: firstFoldersNotes),
-//    NoteFolder(title: "Social Media", notes: secondFoldersNotes)
-//]
 
 var noteFolders = [NoteFolder]()
 

@@ -1,11 +1,3 @@
-//
-//  FolderCell.swift
-//  Notes
-//
-//  Created by Lucas Inocencio on 17/08/19.
-//  Copyright © 2019 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 class FolderCell: UITableViewCell {

@@ -1,11 +1,3 @@
-//
-//  extension.swift
-//  Notes
-//
-//  Created by Lucas Inocencio on 15/08/19.
-//  Copyright © 2019 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 extension UIColor {

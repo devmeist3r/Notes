@@ -1,11 +1,3 @@
-//
-//  FoldersNotesController.swift
-//  Notes
-//
-//  Created by Lucas Inocencio on 15/08/19.
-//  Copyright © 2019 Lucas Inocencio. All rights reserved.
-//
-
 import UIKit
 
 extension FolderNotesController: NoteDelegate {
@@ -30,7 +22,6 @@ class FolderNotesController: UITableViewController {
     
     fileprivate var notes = [Note]()
     fileprivate var filteredNotes = [Note]()
-    
     fileprivate let CELL_ID: String = "CELL_ID"
     
     override func viewDidLoad() {

@@ -1,11 +1,3 @@
-//
-//  CoreDateManager.swift
-//  Notes
-//
-//  Created by P21 Sistemas on 20/08/19.
-//  Copyright © 2019 Lucas Inocencio. All rights reserved.
-//
-
 import CoreData
 
 struct CoreDataManager {
@@ -39,8 +31,6 @@ struct CoreDataManager {
         }
     }
     
-    
-    // 2 fetch noteFolder
     func fetchNoteFolders() -> [NoteFolder] {
         let context = persistentContainer.viewContext
         
@@ -69,7 +59,6 @@ struct CoreDataManager {
         }
     }
     
-    // NOTE FUNCTIONS
     func createNewNote(title: String, date: Date, text: String, noteFolder: NoteFolder) -> Note {
         let context = persistentContainer.viewContext
         let newNote = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context) as! Note
@@ -121,6 +110,5 @@ struct CoreDataManager {
         } catch let err {
             print("error saving/updating note",err)
         }
-        
     }
 }
